@@ -1,0 +1,54 @@
+.weather-main-temp {
+  width: 100%;
+  text-align: center;
+  font-size: 8em;
+  margin-top: 5%;
+}
+.weather-main-temp .weather-type {
+  font-size: 40px;
+}
+
+.weather-main-temp .weather-icon {
+  font-size: 80px;
+}
+
+.weather-main-description {
+  font-size: 26px;
+  margin-left: 10px; 
+}
+
+.icons-main-content {
+  padding-right: 5px;
+}
+
+
+.weather-main-info-right {
+  width:50%;
+  float: right
+}
+
+.weather-main-info-left {
+  width:50%;
+  float: left;
+}
+
+.weather-main-actions {
+  margin-top: 5%;
+  width:100%;
+  text-align: center;
+  float: left;
+}
+
+.weather-main-actions button {
+  width: 300px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.weather-main-content {
+  height: 60vh
+}
+
+.weather-forecast-item {
+  padding-right:5px;
+}

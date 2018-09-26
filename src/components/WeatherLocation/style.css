@@ -1,0 +1,68 @@
+.weather-container {
+  width: 500px;
+  display: inline-block;
+}
+.weather-container.fade {
+  transform: translateY(20px);
+  transition: transform 1s;
+}
+.weather-title-primary{
+  color: #333333;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.icon-pin {
+  margin-right: 10px;
+}
+
+.map-pin {
+  color: #cc0000;
+}
+.flag-pin {
+  font-size: 22px;
+}
+
+.icon-map-pin.fade{
+  transform: translateY(40px);
+  transition: transform 3s;
+}
+
+.weather-grade-type {
+  float: right;
+}
+
+.button-grade-type {
+  color: #000;
+  background-color: #FFF;
+  width: 50px;
+  height: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold; 
+}
+
+.selected {
+  background-color: rgb(61, 61, 61);
+  border-radius: 10px;
+  color: white;
+  transition: background-color 0.5s;
+}
+
+.button-grade-type:active,
+.button-grade-type:focus {
+  outline:0;
+}
+
+.list-cities {
+  margin: none;
+  padding-left: 15px;
+  padding-right: 15px;
+  list-style: none;
+  overflow-y: scroll;
+  height: 85vh;
+}
+
+
+
+

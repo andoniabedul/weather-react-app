@@ -1,0 +1,132 @@
+/*.weather-extra-info-container {
+  background-color: #e4e3e3;
+  height: 55px;
+  padding: 4%;
+  color: #333333;
+  border-radius: 10px;
+}*/
+.weather-extra-info-container {
+    cursor: pointer;
+}
+.weather-extra-info-container button {
+  text-align: center;
+}
+.weather-data-temperature {
+  width: 45%;
+  float: left;
+  height:45px;
+  display: flex;
+}
+
+.span-temperature {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.weather-data-extra-info {
+  width: 55%;
+  float: left;
+  height:45px;
+  line-height: 25px;
+}
+
+.weather-icon {
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.weather-type {
+  font-size: 16px;
+}
+
+.span-weather-extra-info {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.icon-humidity {
+  margin-left: 5px;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.icon-wind {
+  margin-right: 10px;
+}
+
+.weather-forecast-list {
+  background-color: #e4e3e3;
+  height: 55px;
+  color: #333333;
+  border-radius: 10px;
+  -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
+  transition: height 1s;
+}
+
+
+.weather-forecast {
+  width: 20%;
+  float: left;
+}
+
+.weather-forecast-temperature {
+  font-size: 18px;
+}
+.icon-forecast {
+  margin-right: 5px;
+  font-size: 22px;
+}
+.weather-forecast-day {
+  text-align: center;
+}
+
+.forecast-temp-intervals {
+  text-align: center;
+}
+
+.weather-bottom-info-container {
+  margin-top: 3px;
+}
+
+.weather-bottom-info-container .weather-extra-info-date {
+  float: right;
+  font-size: 20px;
+}
+
+.weather-button-show {
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0080FF;
+  color: white;
+  cursor: pointer;
+}
+
+.weather-button-show:hover {
+  transition: 0.5s;
+  background-color: #045FB4;
+  border: 1px solid #0080FF;
+}
+
+.weather-extra-info-current {
+  background-color: #e4e3e3;
+  height: 45px;
+  padding: 4%;
+  color: #333333;
+  border-radius: 10px;
+}
+
+.weather-extra-info-forecast {
+  background-color: #e4e3e3;
+  height: 45px;
+  padding: 4%;
+  color: #333333;
+  border-radius: 10px;
+}
+
+.weather-forecast-list:active {
+    height: 45px;
+}
+
