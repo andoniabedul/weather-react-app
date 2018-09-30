@@ -25,10 +25,8 @@ class WeatherContent extends Component {
   }
 
   render(){
-    console.log(this.props)
-    const { showFullForecast, city, data, forecastData } = this.state
-    const {  weatherType } = this.props
-    console.log("city state: "+ this.state.city)
+    const { showFullForecast } = this.state
+    const {  weatherType, city, data, forecastData } = this.props
     return (
       <div className="main-content">
         <LocationTitle city={city} selectedIndicator={false} pinClass={getIconFlag(city)} />

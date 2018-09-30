@@ -23,10 +23,13 @@ class WeatherLocation extends Component {
         this.selectLocation = onSelectLocation;
     }
     componentWillMount(){
-        /*OpenWeatherMap.getCurrentDataByCity(this.state.city, this.state.country)
+        OpenWeatherMap.getCurrentDataByCity(this.state.city, this.state.country)
         .then(({city, data})=>{
             OpenWeatherMap.getForecastDataByCity(this.state.city, this.state.country)
                 .then((forecastData) => {
+                    if (this.props.index === 0) {
+                        this.selectLocation(city, data, forecastData)
+                    }
                     this.setState({
                         city,
                         data,
@@ -39,14 +42,12 @@ class WeatherLocation extends Component {
                         message: error
                     })
                 })
-        })*/       
+        })     
     }
 
     render(){
         const { onSelectLocation, weatherType, selectedCity } = this.props
-        const { city, country, data, forecastData, cssClass, error } = this.state;
-        console.log("2: " + this.state.city)
-        console.log("1: "+ this.props.country)
+        const { city, data, forecastData, cssClass } = this.state;
             return (
                 <div className={`${cssClass}`} onClick={() => { onSelectLocation(city, data, forecastData) }}>
                     <LocationTitle city={city} selectedIndicator={(city === selectedCity) ? true : false} pinClass="fa fa-map-marker icon-pin map-pin" />

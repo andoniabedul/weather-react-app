@@ -16,7 +16,7 @@ const WeatherMain = (props) => {
             }
           </span>
           <div className="weather-main-temp">
-            <i className={getIconByIdMaped(data.weatherState)}></i>
+            <i className={getIconByIdMaped(data.weatherState, data.time)}></i>
             {getGradeConversion(data.temperature, weatherType)}
             <span className="weather-type"> {gradeAbbreviation(weatherType)}</span>
           </div>

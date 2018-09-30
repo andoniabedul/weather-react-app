@@ -22,7 +22,7 @@ const WeatherForecast = (props) => {
             { getDayOfTheWeek(formatedDate.getDay()) + ' ' + getAbbreviateDate(formatedDate)}
             </div>
             <div className="weather-forecast-temperature">
-              <i className={getIconByIdMaped(weatherState) + ' icon-forecast'}></i>
+              <i className={getIconByIdMaped(weatherState, time) + ' icon-forecast'}></i>
               {getGradeConversion(temperature, weatherType)}
               <span className="weather-forecast-type"> {gradeAbbreviation(weatherType)}</span>
             </div>

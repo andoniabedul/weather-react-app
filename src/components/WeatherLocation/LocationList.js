@@ -16,6 +16,7 @@ class LocationList extends Component {
   }
   
   handleSelectLocation(city, data, forecastData){
+    console.log("handleLocation: " + JSON.stringify(forecastData))
     this.onSelectLocation(city, data, forecastData)
     this.setState({
       selectedCity: city
@@ -24,16 +25,18 @@ class LocationList extends Component {
 
   render(){
     const { cities, selectedCity } = this.state
-    const weatherType = this.props.weatherType
-    console.log("cities: " + cities[0])
+    const { data, forecastData, weatherType } = this.props
     return (
       <div className="list-cities">
         {
-          cities.map((city) => {
+          cities.map((city, index) => {
             return <WeatherLocation
               key={city.join(', ')}
-              city={city[0]}
+              city={city.join(', ')}
               country={city[1]}
+              data={data}
+              forecastData={forecastData}
+              index={index}
               onSelectLocation={(city, data, forecastData) => { this.handleSelectLocation(city, data, forecastData)}}
               weatherType={weatherType}
               selectedCity={selectedCity}

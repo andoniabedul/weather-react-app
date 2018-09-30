@@ -5,12 +5,12 @@ import { gradeAbbreviation, getIconByIdMaped, getGradeConversion } from '../../.
 
 class WeatherTemperature extends Component {
     render(){
-        const { temperature, weatherState, weatherType, humidity, wind } = this.props;
+        const { temperature, weatherState, weatherType, humidity, wind, time } = this.props;
         return (
             <div className="weather-extra-info-current">
                 <div className="weather-data-temperature">
                     <span className="span-temperature">
-                        <i className={getIconByIdMaped(weatherState)}></i>
+                        <i className={getIconByIdMaped(weatherState, time)}></i>
                         {getGradeConversion(temperature, weatherType)}
                         <span className="weather-type"> {gradeAbbreviation(weatherType)}</span>
                     </span>

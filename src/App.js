@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom'
 import WeatherSettings from './components/WeatherSettings'
 import WeatherContent from './components/WeatherContent'
 import LocationList from './components/WeatherLocation/LocationList'
-import OpenWeatherMap from './services/openweathermap'
 import { WEATHER_TYPE_CELSIUS, WEATHER_TYPE_FAHRENHEIT, data, forecastData } from './constants/weather'
-
+import dotenv from 'dotenv'
 import './App.css'
 
 const cities = [
@@ -30,6 +29,7 @@ class App extends Component {
       error: false,
       message: ""
     }
+    dotenv.config()
     this.changeWeatherType = this.changeWeatherType.bind(this)
     this.selectLocation = this.selectLocation.bind(this)
   }
@@ -57,27 +57,10 @@ class App extends Component {
   componentDidMount() {
     this.handleFade()
     this.changeWeatherType(WEATHER_TYPE_CELSIUS)
-    OpenWeatherMap.getCurrentDataByCity(this.state.city, this.state.country)
-      .then(({ city, data }) => {
-        OpenWeatherMap.getForecastDataByCity(this.state.city, this.state.country)
-          .then((forecastData) => {
-            this.setState({
-              city,
-              data,
-              forecastData
-            })
-          })
-          .catch((error) => {
-            this.setState({
-              error: true,
-              message: error
-            })
-          })
-      })      
   }
 
   render() {
-    const { weatherType, location, data, forecastData, error, message } = this.state
+    const { weatherType, location, data, forecastData, error } = this.state
     return (
       <div className="app-container">
         {

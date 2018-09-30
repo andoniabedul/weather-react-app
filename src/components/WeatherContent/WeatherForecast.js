@@ -1,34 +1,58 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropType from 'prop-types'
-import { gradeAbbreviation, getGradeConversion, getDayOfTheWeek, getIconByIdMaped, getAbbreviateDate, getForecastbyDays } from '../../utils/utils'
+import WeatherHours from './WeatherHours'
+import { getAbbreviateDate, getForecastbyDays } from '../../utils/utils'
 import './style.css'
 
-const WeatherForecast = (props) => {
-  const { forecastData, weatherType } = props
-  const byDays = getForecastbyDays(forecastData);
-  return (
-    <div className="weather-forecast-content">
-      {
-        forecastData.map((dayForecast) => {
-          const { temperature, weatherState, time, humidity, wind, pressure } = dayForecast
-          const formatedDate = new Date(time)
-          return <div key={temperature + '-' + time} className="weather-forecast-main">
-            <div className="weather-forecast-day-main">
-              {getDayOfTheWeek(formatedDate.getDay()) + ' ' + getAbbreviateDate(formatedDate)}
-            </div>
-            <div className="weather-forecast-temperature-main">
-              <span className="weather-forecast-item"> <i className={getIconByIdMaped(weatherState) + ' icon-forecast'}></i>{getGradeConversion(temperature, weatherType)}</span>
-              <span className="weather-forecast-item"> {gradeAbbreviation(weatherType)}</span>
-              <span className="weather-forecast-item"><i className="icons-main-content wi wi-raindrop"></i>Humedad: {humidity} %</span>
-              <span className="weather-forecast-item"><i className={`icons-main-content wi wi-wind-beaufort-${parseInt(wind, 10)}`}></i>Viento: {wind} m/s</span>
-              <span className="weather-forecast-item"><i className="icons-main-content wi wi-barometer"></i>Presión: {pressure} bar</span>
-            </div>
-            <br />
-          </div>
-        })
-      }
-    </div>
-  )
+class WeatherForecast extends Component {
+  constructor(props){
+    super()
+    this.state = {
+      selectedDay: Object.keys(getForecastbyDays(props.forecastData))[0],
+    }
+    this.selectDay = this.selectDay.bind(this)
+  }
+  selectDay(day){
+    this.setState({
+      selectedDay: day
+    })
+  }
+  render(){
+    const { selectedDay } = this.state
+    const { forecastData, weatherType } = this.props
+    const byDays = getForecastbyDays(forecastData)
+    const daysOfWeek = Object.keys(byDays)
+    return (
+      <div className="weather-forecast-content">
+        <div className="weather-forecast-days-list">
+          {
+            daysOfWeek.map((day) => {
+              const date = getAbbreviateDate(new Date(byDays[day][0]['time']))
+              const css = (day === selectedDay)? " active" : ""
+              
+              return <div
+                key={day}
+                onClick={() => { this.selectDay(day) }}
+                className={`weather-forecast-days ${css}`}>
+                {day}
+                <br />
+                {date}
+              </div>
+            })
+          }
+        </div>
+        <div className="weather-forecast-hours-list">
+          {
+            byDays[selectedDay].map((forecast) => {
+              return <WeatherHours forecast={forecast} weatherType={weatherType} />
+            })
+          }
+        </div>
+       
+        
+      </div>
+    )
+  }
 }
 
 WeatherForecast.propTypes = {

@@ -156,8 +156,10 @@ export const getIconById = (id) => {
 }
 
 // YES! POR FIN ALGO SENCILLO Y EFICIENTE
-export const getIconByIdMaped = (id) => {
-  return `weather-icon wi wi-owm-${id}` 
+export const getIconByIdMaped = (id, time) => {
+  let date = new Date(time)
+  const sunOrMoon = (date.getHours() > 18)? 'night' : 'day'
+  return `weather-icon wi wi-owm-${sunOrMoon}-${id}`  
 }
 
 /**
@@ -193,7 +195,8 @@ export const getAbbreviateDate = (date) => {
 }
 
 export const getFormatedDate = (date) => {
-  const strDate = date.toString()
+  const formatedDate = new Date(date)
+  const strDate = formatedDate.toString()
   return `${strDate.substring(3, 15).toUpperCase()} `
 }
 
@@ -218,7 +221,7 @@ export const getDateForSun = (date) => {
   const today = new Date();
   if(formatedDate.getDay() === today.getDay()){
     return `Hoy, ${(formatedDate.getHours() === 0) ? '00' : formatedDate.getHours()}:${formatedDate.getMinutes()}`;
-  } else if (formatedDate.getDay() === today.getDay() + 1 ){
+  } else {
     return `Mañana, ${(formatedDate.getHours() === 0) ? '00' : formatedDate.getHours()}:${formatedDate.getMinutes()}`
   }
 }
@@ -230,14 +233,16 @@ export const getNext5DaysForecastData = (data) => {
   })
 }
 
-export const getForecastbyDays = (data) => {
-
-  const forecastList = data;
-  let day = new Date(data[0].time)
-  day = day.getDay()
-
-  const firstDay = data.reduce((forecastByHour) => {
-    return day === forecastByHour.time
+export const getForecastbyDays = (forecastList) => {
+  const formated = {}
+  forecastList.forEach((forecast)=>{
+    const forecastDayWeek = new Date(forecast.time)
+    const day = getDayOfTheWeek(forecastDayWeek.getDay())
+    if(formated.hasOwnProperty(day)){
+      formated[day].push(forecast)
+    } else {
+      formated[day] = [forecast]
+    }
   })
-  
+  return formated
 }

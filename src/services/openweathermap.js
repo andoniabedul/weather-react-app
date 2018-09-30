@@ -6,8 +6,7 @@ const CURRENT = 'weather';
 const FORECAST = 'forecast';
 
 const BASE_API_URL = 'https://api.openweathermap.org/data/2.5/'
-const WEATHER_APP_ID = '061f24cf3cde2f60644a8240302983f2'
-
+const WEATHER_APP_ID = process.env.REACT_APP_OPENWEATHERMAP_APPID
 
 const getUrlCurrentDataByCity = (city, country) => `${BASE_API_URL}${CURRENT}?q=${city},${country}&APPID=${WEATHER_APP_ID}`
 const getUrlCurrentDataByCoordinates = (latitude, longitude) => `${BASE_API_URL}${CURRENT}?lat=${latitude}&lon=${longitude}&APPID=${WEATHER_APP_ID}`
@@ -60,6 +59,7 @@ const getForecastDataByCoordinates = (latitude, longitude) => {
 
 const getForecastDataByCity = (city, country) => {
   const URL = getUrlForecastDataByCity(city, country)
+  console.log("getForecastByCity: " + city + " " + country)
   return new Promise((resolve, reject) => {
     fetch(URL)
       .then((res) => res.json())
@@ -83,24 +83,25 @@ const getForecastDataByCity = (city, country) => {
 
 function handleResponse(response){
   if(!isError(response)){
-    console.log("response: " + JSON.stringify(response))
+    console.log(response.dt)
     return {
       city: `${response.name}, ${response.sys.country}`,
       data: {
         temperature: gradeConverterFromKelvin(response.main.temp, WEATHER_TYPE_CELSIUS),
         weatherState: response.weather[0].id,
         humidity: response.main.humidity,
-        wind: response.wind.speed,
+        wind: parseInt(response.wind.speed).toFixed(2),
         max_temperature: gradeConverterFromKelvin(response.main.temp_max, WEATHER_TYPE_CELSIUS),
         min_temperature: gradeConverterFromKelvin(response.main.temp_min, WEATHER_TYPE_CELSIUS),
         pressure: response.main.pressure,
         deg: response.wind.deg,
         sunrise: response.sys.sunrise,
         sunset: response.sys.sunset,
-        time: new Date(getTimeFromUnixTimestamp(response.dt))
+        time: getTimeFromUnixTimestamp(response.dt)
       }
     }
   } else {
+    console.log("IS ERROR")
     return {
       error: 'Parece que ocurre un error consultando el servidor. Intente más tarde.',
       cod: (response.hasOwnProperty("cod"))? response.cod : ""
@@ -111,7 +112,7 @@ function handleResponse(response){
 
 
 function isError(response){
-  if (response.hasOwnProperty("cod") && parseInt(response["cod"]) === HTTP_200_SUCCESS) {
+  if(response.hasOwnProperty("list") || response.hasOwnProperty("main")){
     return false
   }
   return true

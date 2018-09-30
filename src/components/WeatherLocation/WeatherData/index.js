@@ -23,7 +23,7 @@ class WeatherData extends Component {
         })
     }
     render(){
-        const { temperature, weatherState, humidity, wind } = this.props.data
+        const { temperature, weatherState, humidity, wind, time } = this.props.data
         const weatherType = this.props.weatherType
         const forecastData = this.props.forecastData
         const forecastVisibility = this.state.forecastVisibility
@@ -37,6 +37,7 @@ class WeatherData extends Component {
                         weatherState={weatherState}
                         humidity={humidity}
                         wind={wind}
+                        time={time}
                     />
                     :
                     <WeatherForecast
