@@ -65,13 +65,13 @@ class App extends Component {
     this.handleFade()
     this.changeWeatherType(WEATHER_TYPE_CELSIUS)  
     getIpLocation()
-      .then(({ city, countryCode, lat, lon }) => {
-        Geobytes.getNearbyPlaces(lat, lon)
+      .then(({ city, country, latitude, longitude }) => {
+        Geobytes.getNearbyPlaces(latitude, longitude)
           .then((cities) => {
             this.setState({
-              location: `${city}, ${countryCode}`,
+              location: `${city}, ${country}`,
               city: city,
-              country: countryCode,
+              country: country,
               cities: cities
             })
           })

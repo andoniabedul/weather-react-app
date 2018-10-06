@@ -1,4 +1,4 @@
-const BASE_API_URL = "http://ip-api.com/json/"
+const BASE_API_URL = "https://ipapi.co/json/"
 
 export const getIpLocation = () => {
   return new Promise((resolve, reject)=>{
