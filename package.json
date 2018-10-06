@@ -2,7 +2,7 @@
   "name": "weatherapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://andoniabedul.github.io/weatherapp",
+  "homepage": "http://andoniabedul.github.io/weather-react-app/",
   "dependencies": {
     "dotenv": "^6.0.0",
     "font-awesome": "^4.7.0",
@@ -23,5 +23,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }
