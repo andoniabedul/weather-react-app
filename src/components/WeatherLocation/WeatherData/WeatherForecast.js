@@ -35,6 +35,7 @@ const WeatherForecast = (props) => {
 }
 
 WeatherForecast.propType = {
+  weatherType: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       temperature: PropTypes.number.isRequired,
@@ -44,7 +45,7 @@ WeatherForecast.propType = {
       min_temperature: PropTypes.number.isRequired,
       time: PropTypes.instanceOf(Date).isRequired,
     })
-  )
+  ).isRequired
   
 }
 export default WeatherForecast

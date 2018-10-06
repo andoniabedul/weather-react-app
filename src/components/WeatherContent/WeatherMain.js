@@ -1,5 +1,5 @@
 import React from 'react'
-import PropType from 'prop-types'
+import PropTypes from 'prop-types'
 import { gradeAbbreviation, getGradeConversion, getDescriptionById, getIconByIdMaped, getDateForSun, getFormatedDate } from '../../utils/utils'
 import './style.css'
 
@@ -35,5 +35,19 @@ const WeatherMain = (props) => {
         </div>
   )
 }
-
+WeatherMain.propTypes = {
+  weatherType: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    max_temperature: PropTypes.number.isRequired,
+    min_temperature: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    sunrise: PropTypes.number.isRequired,
+    sunset: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
+  }).isRequired
+}
 export default WeatherMain

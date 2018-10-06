@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropType from 'prop-types'
+import PropTypes from 'prop-types'
 import WeatherLocation from './index'
 import './style.css'
 
@@ -16,7 +16,6 @@ class LocationList extends Component {
   }
   
   handleSelectLocation(city, data, forecastData){
-    console.log("handleLocation: " + JSON.stringify(forecastData))
     this.onSelectLocation(city, data, forecastData)
     this.setState({
       selectedCity: city
@@ -24,8 +23,8 @@ class LocationList extends Component {
   }
 
   render(){
-    const { cities, selectedCity } = this.state
-    const { data, forecastData, weatherType } = this.props
+    const { selectedCity } = this.state
+    const { data, forecastData, weatherType, cities } = this.props
     return (
       <div className="list-cities">
         {
@@ -50,8 +49,31 @@ class LocationList extends Component {
 }
 
 LocationList.propTypes = {
-  cities: PropType.array.isRequired,
-  onSelectLocation: PropType.func.isRequired,
+  cities: PropTypes.array.isRequired,
+  onSelectLocation: PropTypes.func.isRequired,
+  weatherType: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    max_temperature: PropTypes.number.isRequired,
+    min_temperature: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    sunrise: PropTypes.number.isRequired,
+    sunset: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
+  }),
+  forecastData: PropTypes.arrayOf(PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    max_temperature: PropTypes.number.isRequired,
+    min_temperature: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
+  })),
 }
 
 export default LocationList

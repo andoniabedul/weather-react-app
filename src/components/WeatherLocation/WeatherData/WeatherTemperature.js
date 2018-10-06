@@ -26,9 +26,11 @@ class WeatherTemperature extends Component {
 
 WeatherTemperature.propTypes = {
     temperature: PropTypes.number.isRequired,
+    weatherType: PropTypes.string.isRequired,
     weatherState: PropTypes.number.isRequired,
     humidity: PropTypes.number.isRequired,
     wind: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
 }
 
 export default WeatherTemperature

@@ -15,7 +15,6 @@ const WeatherBottom = (props) => {
 }
 
 WeatherBottom.propType = {
-  humidity: PropTypes.number.isRequired,
-  wind: PropTypes.string.isRequired,
+  handleForecastVisibility: PropTypes.string.isRequired,
 }
 export default WeatherBottom

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import WeatherSettings from './components/WeatherSettings'
 import WeatherContent from './components/WeatherContent'
 import LocationList from './components/WeatherLocation/LocationList'
+import Geobytes from './services/geobytes'
+import { getIpLocation } from './services/ip'
 import { WEATHER_TYPE_CELSIUS, WEATHER_TYPE_FAHRENHEIT, data, forecastData } from './constants/weather'
 import dotenv from 'dotenv'
 import './App.css'
@@ -21,6 +23,7 @@ class App extends Component {
     super()
     this.state = {
       weatherType: WEATHER_TYPE_FAHRENHEIT,
+      cities: cities,
       city: cities[0][0],
       country: cities[0][1],
       location: `${cities[0][0]}, ${cities[0][1]}`,
@@ -32,6 +35,7 @@ class App extends Component {
     dotenv.config()
     this.changeWeatherType = this.changeWeatherType.bind(this)
     this.selectLocation = this.selectLocation.bind(this)
+    this.getLocation = this.getLocation.bind(this)
   }
 
   changeWeatherType(wType){
@@ -53,14 +57,29 @@ class App extends Component {
       elem.style.transition = "transform 1.5s"
     })
   }
+  getLocation(){
+       
+  }
 
   componentDidMount() {
     this.handleFade()
-    this.changeWeatherType(WEATHER_TYPE_CELSIUS)
+    this.changeWeatherType(WEATHER_TYPE_CELSIUS)  
+    getIpLocation()
+      .then(({ city, countryCode, lat, lon }) => {
+        Geobytes.getNearbyPlaces(lat, lon)
+          .then((cities) => {
+            this.setState({
+              location: `${city}, ${countryCode}`,
+              city: city,
+              country: countryCode,
+              cities: cities
+            })
+          })
+      })
   }
 
   render() {
-    const { weatherType, location, data, forecastData, error } = this.state
+    const { weatherType, location, data, forecastData, error, cities } = this.state
     return (
       <div className="app-container">
         {

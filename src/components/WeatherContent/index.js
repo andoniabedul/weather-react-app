@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import PropType from 'prop-types'
+import PropTypes from 'prop-types'
 import LocationTitle from '../WeatherLocation/LocationTitle'
 import WeatherMain from './WeatherMain'
 import WeatherForecast from './WeatherForecast'
@@ -51,7 +51,30 @@ class WeatherContent extends Component {
 }
 
 WeatherContent.propTypes = {
-  city: PropType.string.isRequired,
+  city: PropTypes.string.isRequired,
+  weatherType: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    max_temperature: PropTypes.number.isRequired,
+    min_temperature: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    sunrise: PropTypes.number.isRequired,
+    sunset: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
+  }).isRequired,
+  forecastData: PropTypes.arrayOf(PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    max_temperature: PropTypes.number.isRequired,
+    min_temperature: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
+  })).isRequired,
 }
 
 export default WeatherContent

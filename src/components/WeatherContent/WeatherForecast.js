@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import PropType from 'prop-types'
+import PropTypes from 'prop-types'
+import _ from 'lodash'
 import WeatherHours from './WeatherHours'
 import { getAbbreviateDate, getForecastbyDays } from '../../utils/utils'
 import './style.css'
@@ -31,7 +32,7 @@ class WeatherForecast extends Component {
               const css = (day === selectedDay)? " active" : ""
               
               return <div
-                key={day}
+                key={_.uniqueId(`main_forecast_${day}_`)}
                 onClick={() => { this.selectDay(day) }}
                 className={`weather-forecast-days ${css}`}>
                 {day}
@@ -44,7 +45,11 @@ class WeatherForecast extends Component {
         <div className="weather-forecast-hours-list">
           {
             byDays[selectedDay].map((forecast) => {
-              return <WeatherHours forecast={forecast} weatherType={weatherType} />
+              return <WeatherHours 
+                key={_.uniqueId(`main_forecast_hours_`)}
+                forecast={forecast} 
+                weatherType={weatherType} 
+              />
             })
           }
         </div>
@@ -56,7 +61,16 @@ class WeatherForecast extends Component {
 }
 
 WeatherForecast.propTypes = {
-  city: PropType.string.isRequired,
+  forecastData: PropTypes.arrayOf(PropTypes.shape({
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.number.isRequired,
+    max_temperature: PropTypes.number.isRequired,
+    min_temperature: PropTypes.number.isRequired,
+    pressure: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired
+  })).isRequired,
 }
 
 export default WeatherForecast

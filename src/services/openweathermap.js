@@ -1,5 +1,5 @@
 
-import { WEATHER_TYPE_CELSIUS, HTTP_200_SUCCESS } from '../constants/weather'
+import { WEATHER_TYPE_CELSIUS } from '../constants/weather'
 import { gradeConverterFromKelvin, getTimeFromUnixTimestamp } from '../utils/utils'
 
 const CURRENT = 'weather';
@@ -28,7 +28,7 @@ const getCurrentDataByCoordinates = (latitude, longitude) =>{
 }
 
 const getCurrentDataByCity = (city, country) =>{
-  const URL = getUrlCurrentDataByCity(city, country)
+  const URL = getUrlCurrentDataByCity(city.split(',')[0], country)
   return new Promise((resolve, reject)=>{
     fetch(URL)
       .then((res) => res.json())
@@ -59,7 +59,6 @@ const getForecastDataByCoordinates = (latitude, longitude) => {
 
 const getForecastDataByCity = (city, country) => {
   const URL = getUrlForecastDataByCity(city, country)
-  console.log("getForecastByCity: " + city + " " + country)
   return new Promise((resolve, reject) => {
     fetch(URL)
       .then((res) => res.json())
@@ -83,14 +82,13 @@ const getForecastDataByCity = (city, country) => {
 
 function handleResponse(response){
   if(!isError(response)){
-    console.log(response.dt)
     return {
       city: `${response.name}, ${response.sys.country}`,
       data: {
         temperature: gradeConverterFromKelvin(response.main.temp, WEATHER_TYPE_CELSIUS),
         weatherState: response.weather[0].id,
         humidity: response.main.humidity,
-        wind: parseInt(response.wind.speed).toFixed(2),
+        wind: parseInt(parseInt(response.wind.speed, 10).toFixed(2), 10),
         max_temperature: gradeConverterFromKelvin(response.main.temp_max, WEATHER_TYPE_CELSIUS),
         min_temperature: gradeConverterFromKelvin(response.main.temp_min, WEATHER_TYPE_CELSIUS),
         pressure: response.main.pressure,
@@ -101,7 +99,6 @@ function handleResponse(response){
       }
     }
   } else {
-    console.log("IS ERROR")
     return {
       error: 'Parece que ocurre un error consultando el servidor. Intente más tarde.',
       cod: (response.hasOwnProperty("cod"))? response.cod : ""

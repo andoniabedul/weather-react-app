@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import LocationTitle from './LocationTitle'
 import WeatherData from './WeatherData'
 import OpenWeatherMap from '../../services/openweathermap'
-import {getNext5DaysForecastData} from '../../utils/utils'
 import { data, forecastData } from '../../constants/weather'
 import './style.css'
 
@@ -18,9 +17,10 @@ class WeatherLocation extends Component {
             country: country,
             data: data,
             forecastData: forecastData,
-            cssClass: 'weather-container'
+            cssClass: 'weather-container',
         }
-        this.selectLocation = onSelectLocation;
+        this.onSelectLocation = onSelectLocation;
+        this.selectLocation = this.selectLocation.bind(this)
     }
     componentWillMount(){
         OpenWeatherMap.getCurrentDataByCity(this.state.city, this.state.country)
@@ -44,21 +44,26 @@ class WeatherLocation extends Component {
                 })
         })     
     }
+    selectLocation(city, data, forecastData){
+        this.onSelectLocation(city, data, forecastData)
+    }
 
     render(){
-        const { onSelectLocation, weatherType, selectedCity } = this.props
+        const { weatherType, selectedCity } = this.props
         const { city, data, forecastData, cssClass } = this.state;
-            return (
-                <div className={`${cssClass}`} onClick={() => { onSelectLocation(city, data, forecastData) }}>
-                    <LocationTitle city={city} selectedIndicator={(city === selectedCity) ? true : false} pinClass="fa fa-map-marker icon-pin map-pin" />
-                    <WeatherData
-                        weatherType={weatherType}
-                        data={data}
-                        forecastData={getNext5DaysForecastData(forecastData)}
-                        selectedCity={selectedCity}
-                    />
-                </div>
-            )
+        return (
+            <div className={`${cssClass}`} >
+                <LocationTitle city={city} selectedIndicator={(city === selectedCity) ? true : false} pinClass="fa fa-map-marker icon-pin map-pin" />
+                <WeatherData
+                    weatherType={weatherType}
+                    city={city}
+                    data={data}
+                    onSelectLocation={this.selectLocation}
+                    forecastData={forecastData}
+                    selectedCity={selectedCity}
+                />
+            </div>
+        )
         
     }
 } 

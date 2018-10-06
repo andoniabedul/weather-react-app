@@ -246,3 +246,7 @@ export const getForecastbyDays = (forecastList) => {
   })
   return formated
 }
+
+export const getFormatedCity = (city)=>{
+  return [city.split(',')[0], city.split(',')[1].substring(1)]
+}
