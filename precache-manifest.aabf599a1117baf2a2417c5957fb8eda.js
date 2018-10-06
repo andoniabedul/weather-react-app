@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/weather-react-app/static/media/fontawesome-webfont.b06871f2.ttf"
   },
   {
-    "revision": "eb5d4223e9399d7b7e6a",
+    "revision": "37b1b67cb79190a158d4",
     "url": "/weather-react-app/static/css/main.c9f8ad88.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/weather-react-app/static/media/fontawesome-webfont.674f50d2.eot"
   },
   {
-    "revision": "eb5d4223e9399d7b7e6a",
-    "url": "/weather-react-app/static/js/main.eb5d4223.chunk.js"
+    "revision": "37b1b67cb79190a158d4",
+    "url": "/weather-react-app/static/js/main.37b1b67c.chunk.js"
   },
   {
     "revision": "912ec66d7572ff821749319396470bde",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/weather-react-app/static/css/1.45a0f128.chunk.css"
   },
   {
-    "revision": "a5f57f98cc09d0a093bf0a2bd4855b5c",
+    "revision": "3ea430b83a2ef8c0bdd59e6110394b09",
     "url": "/weather-react-app/index.html"
   }
 ];
