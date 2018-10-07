@@ -13,12 +13,7 @@ class GradeType extends Component {
     this.changeWeather = props.changeWeather
   }
   
-  componenteWillUpdate(){
-    this.props.changeWeather(this.state.type)
-  }
-
   changeGrade(){
-    this.changeWeather(this.state.type)
     if(this.state.type === WEATHER_TYPE_CELSIUS){
       this.setState({
         type: WEATHER_TYPE_FAHRENHEIT
@@ -28,8 +23,11 @@ class GradeType extends Component {
         type: WEATHER_TYPE_CELSIUS
       })
     }
+    this.changeWeather(this.state.type)
   }
-
+  componentDidMount(){
+    this.changeGrade()
+  }
   render(){
     return (
       <div className="weather-grade-type">

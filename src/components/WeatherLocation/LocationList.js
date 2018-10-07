@@ -31,7 +31,7 @@ class LocationList extends Component {
           cities.map((city, index) => {
             return <WeatherLocation
               key={city.join(', ')}
-              city={city.join(', ')}
+              city={city[0]}
               country={city[1]}
               data={data}
               forecastData={forecastData}

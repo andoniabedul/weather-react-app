@@ -133,3 +133,41 @@ input.cmn-toggle-round-flat:checked + label:after {
 .menu-title {
   font-size: 35px;
 }
+
+.loading-div {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+/* Smartphones (portrait and landscape) ----------- */  
+@media only screen   
+and (min-device-width : 320px) and (max-device-width : 480px) {  
+  .weather-settings {
+    height: 5px;
+  }
+  .weather-settings .menu-title {
+    font-size: 22px !important;
+  }
+  .main-content {
+    padding: 1%;
+    width: 99%;
+  }
+  .list-cities {
+    display:none;
+  }
+  .weather-current-content {
+    padding:1%;
+    font-size: 14px !important;
+  }
+  .menu-title {
+    font-size: 12px !important;
+  }
+   .weather-forecast-main span:last-child{
+    display: none;
+  }
+  .weather-forecast-main .weather-forecast-item:last-child {
+    display: none;
+  }
+
+}  
+

@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import WeatherSettings from './components/WeatherSettings'
 import WeatherContent from './components/WeatherContent'
 import LocationList from './components/WeatherLocation/LocationList'
-import Geobytes from './services/geobytes'
+import Google from './services/google'
 import { getIpLocation } from './services/ip'
-import { WEATHER_TYPE_CELSIUS, WEATHER_TYPE_FAHRENHEIT, data, forecastData } from './constants/weather'
+import { WEATHER_TYPE_CELSIUS, data, forecastData } from './constants/weather'
 import dotenv from 'dotenv'
 import './App.css'
 
@@ -22,10 +22,10 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      weatherType: WEATHER_TYPE_FAHRENHEIT,
-      cities: cities,
-      city: cities[0][0],
-      country: cities[0][1],
+      weatherType: WEATHER_TYPE_CELSIUS,
+      cities: [],
+      city: '',
+      country: '',
       location: `${cities[0][0]}, ${cities[0][1]}`,
       data: data,
       forecastData: forecastData,
@@ -63,16 +63,20 @@ class App extends Component {
 
   componentDidMount() {
     this.handleFade()
-    this.changeWeatherType(WEATHER_TYPE_CELSIUS)  
     getIpLocation()
       .then(({ city, country, latitude, longitude }) => {
-        Geobytes.getNearbyPlaces(latitude, longitude)
+        Google.getCitiesByCoordinates(latitude, longitude)
           .then((cities) => {
+            const country = cities[cities.length - 1]['short_name']
+            const formatedCities = cities.map((city, i)=>{
+              return [city['long_name'], country]
+              
+            })
             this.setState({
               location: `${city}, ${country}`,
               city: city,
               country: country,
-              cities: cities
+              cities: formatedCities
             })
           })
       })
@@ -86,23 +90,26 @@ class App extends Component {
           (error)?
           <div>Ha ocurrido un error</div> 
           :
-          <div>
-              <WeatherSettings
-                changeWeather={this.changeWeatherType}
-                wType={weatherType}
-              />
-              <WeatherContent
-                city={location}
-                data={data}
-                forecastData={forecastData}
-                weatherType={weatherType} />
-              <LocationList
-                cities={cities}
-                weatherType={weatherType}
-                onSelectLocation={this.selectLocation}
-                selectedCity={location}
-              />   
-          </div>
+          (cities.length === 0)?
+            <div className="loading-div"><h3>Cargando</h3></div>
+            :
+            <div>
+                <WeatherSettings
+                  changeWeather={this.changeWeatherType}
+                  wType={weatherType}
+                />
+                <WeatherContent
+                  city={location}
+                  data={data}
+                  forecastData={forecastData}
+                  weatherType={weatherType} />
+                <LocationList
+                  cities={cities}
+                  weatherType={weatherType}
+                  onSelectLocation={this.selectLocation}
+                  selectedCity={location}
+                />   
+            </div>
         }
       </div>
     )

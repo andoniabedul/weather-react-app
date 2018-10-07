@@ -1,6 +1,6 @@
 const nearbyPlaces = 'GetNearbyCities';
 
-const BASE_API_URL = 'http://gd.geobytes.com/'
+const BASE_API_URL = 'https://gd.geobytes.com/'
 
 const getUrlNearbyPlaces = (latitude, longitude) => `${BASE_API_URL}${nearbyPlaces}?latitude=${latitude}&longitude=${longitude}`
 

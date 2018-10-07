@@ -22,14 +22,14 @@ const WeatherMain = (props) => {
           </div>
           <div className="weather-main-info">
             <div className="weather-main-info-left">
-              <h2 className=""><i className="icons-main-content wi wi-raindrop"></i>Humedad: {data.humidity} %</h2>
-              <h2 className=""><i className={`icons-main-content wi wi-wind-beaufort-${parseInt(data.wind, 10)}`}></i>Viento: {data.wind} m/s</h2>
-              <h2 className=""><i className="icons-main-content wi wi-barometer"></i>Presión: {data.pressure} bar</h2>
+              <h2 className="weather-main-item"><i className="icons-main-content wi wi-raindrop"></i>Humedad: {data.humidity} %</h2>
+              <h2 className="weather-main-item"><i className={`icons-main-content wi wi-wind-beaufort-${parseInt(data.wind, 10)}`}></i>Viento: {data.wind} m/s</h2>
+              <h2 className="weather-main-item"><i className="icons-main-content wi wi-barometer"></i>Presión: {data.pressure} bar</h2>
             </div>
             <div className="weather-main-info-right">
-              <h2 className=""><i className="icons-main-content wi wi-sunset"></i>Puesta: {getDateForSun(data.sunset)}</h2>
-              <h2 className=""><i className="icons-main-content wi wi-sunrise"></i>Salida: {getDateForSun(data.sunrise)}</h2>
-              <h2 className=""><i className="icons-main-content fa fa-calendar"></i>Fecha: {getFormatedDate(data.time)}</h2>
+              <h2 className="weather-main-item"><i className="icons-main-content wi wi-sunset"></i>Puesta: {getDateForSun(data.sunset)}</h2>
+              <h2 className="weather-main-item"><i className="icons-main-content wi wi-sunrise"></i>Salida: {getDateForSun(data.sunrise)}</h2>
+              <h2 className="weather-main-item"><i className="icons-main-content fa fa-calendar"></i>Fecha: {getFormatedDate(data.time)}</h2>
             </div>
           </div>
         </div>
