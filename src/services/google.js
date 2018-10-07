@@ -18,7 +18,7 @@ export const getCitiesByCoordinates = (latitude, longitude) => {
         resolve(formatedCities)
       } else {
         reject({
-          error: 'Parece que ocurre un error consultando el servidor. Intente más tarde.'
+          error: 'Parece que ocurre un error consultando el servidor. Intente más tarde. Google.'
         })
       }
     })

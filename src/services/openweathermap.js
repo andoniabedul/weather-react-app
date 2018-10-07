@@ -100,7 +100,7 @@ function handleResponse(response){
     }
   } else {
     return {
-      error: 'Parece que ocurre un error consultando el servidor. Intente más tarde.',
+      error: 'Parece que ocurre un error consultando el servidor. Intente más tarde. OpenWeatherMap.',
       cod: (response.hasOwnProperty("cod"))? response.cod : ""
     }
   }
