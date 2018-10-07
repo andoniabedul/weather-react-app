@@ -58,7 +58,6 @@ const getForecastDataByCoordinates = (latitude, longitude) => {
 }
 
 const getForecastDataByCity = (city, country) => {
-  console.log("getForecastDataByCity: " + city + '-' + country)
   const URL = getUrlForecastDataByCity(city, country)
   return new Promise((resolve, reject) => {
     fetch(URL)
