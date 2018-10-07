@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "674f50d287a8c48dc19ba404d20fe713",
-    "url": "/weather-react-app/static/media/fontawesome-webfont.674f50d2.eot"
+    "revision": "b06871f281fee6b241d60582ae9369b9",
+    "url": "/weather-react-app/static/media/fontawesome-webfont.b06871f2.ttf"
   },
   {
-    "revision": "62d55eaf21c6bc14770e",
-    "url": "/weather-react-app/static/css/main.c9f8ad88.chunk.css"
+    "revision": "6ff06092647eb5f0e32b",
+    "url": "/weather-react-app/static/css/main.399b19e1.chunk.css"
   },
   {
     "revision": "ecaf8b481729b18f6a8494d9f691cdae",
     "url": "/weather-react-app/static/media/weathericons-regular-webfont.ecaf8b48.svg"
   },
   {
-    "revision": "55204936964d65f3e6c4",
-    "url": "/weather-react-app/static/js/1.55204936.chunk.js"
+    "revision": "fb06ad6bd4cc5a865b83",
+    "url": "/weather-react-app/static/js/1.fb06ad6b.chunk.js"
   },
   {
     "revision": "d01157d07cdf0ece631f",
@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/weather-react-app/static/media/fontawesome-webfont.fee66e71.woff"
   },
   {
-    "revision": "b06871f281fee6b241d60582ae9369b9",
-    "url": "/weather-react-app/static/media/fontawesome-webfont.b06871f2.ttf"
+    "revision": "674f50d287a8c48dc19ba404d20fe713",
+    "url": "/weather-react-app/static/media/fontawesome-webfont.674f50d2.eot"
   },
   {
-    "revision": "62d55eaf21c6bc14770e",
-    "url": "/weather-react-app/static/js/main.62d55eaf.chunk.js"
+    "revision": "6ff06092647eb5f0e32b",
+    "url": "/weather-react-app/static/js/main.6ff06092.chunk.js"
   },
   {
     "revision": "912ec66d7572ff821749319396470bde",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/weather-react-app/static/media/weathericons-regular-webfont.4618f0de.ttf"
   },
   {
-    "revision": "55204936964d65f3e6c4",
+    "revision": "fb06ad6bd4cc5a865b83",
     "url": "/weather-react-app/static/css/1.45a0f128.chunk.css"
   },
   {
-    "revision": "4db46fba634cee7b89cf5d059f701892",
+    "revision": "321e92967f7eceaf4ad200dd864e83c3",
     "url": "/weather-react-app/index.html"
   }
 ];
