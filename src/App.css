@@ -139,6 +139,77 @@ input.cmn-toggle-round-flat:checked + label:after {
   width: 100%;
   text-align: center;
 }
+.button-add-cities {
+  float: right;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0080FF;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #0080FF;
+  border-radius: 5px;
+  background: white;
+  overflow: auto;
+  width: 40%;
+  height: 80vh;
+  z-index: 2;
+  padding: 0.5%;
+}
+.modal .header {
+  margin-bottom: 1%;
+}
+.modal .footer {
+  margin-top: 1%;
+  text-align: center;
+}
+.button {
+  border-radius: 5px;
+  padding: 5px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0080FF;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+.choosed-cities {
+  margin: 1%;
+  cursor: pointer;
+  width: 40%;
+  padding: 1%;
+  border-radius: 5px; 
+  background-color: #0080FF;
+  color: white;
+}
+.predefined-cities{
+  margin: 1%;
+  border: 2px solid #0080FF;
+  cursor: pointer;
+  width: 40%;
+  padding: 1%;
+  border-radius: 5px; 
+}
+.predefined-cities:hover {
+  background-color: #0080FF;
+  color: white;
+}
+.icon-add-city {
+  float: right;
+}
+.icon-predefined-cities {
+  font-size: 12px;
+}
 /* Smartphones (portrait and landscape) ----------- */  
 @media only screen   
 and (min-device-width : 320px) and (max-device-width : 480px) {  

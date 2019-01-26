@@ -33,8 +33,8 @@ class WeatherData extends Component {
         const forecastVisibility = this.state.forecastVisibility
         const {city, data, weatherType } = this.props
         const { temperature, weatherState, humidity, wind, time } = data
-        const forecastData = this.props.forecastData
-        const FiveDaysForecastData = getNext5DaysForecastData(forecastData)
+        const forecastData = this.props.forecastData;
+        const fiveDaysForecastData = getNext5DaysForecastData(forecastData);
         return (
             <div className="weather-extra-info-container">
                 <div onClick={() => { this.selectLocation(city, data, forecastData) }}>
@@ -50,7 +50,7 @@ class WeatherData extends Component {
                             />
                             :
                             <WeatherForecast
-                                data={FiveDaysForecastData}
+                                data={fiveDaysForecastData}
                                 weatherType={weatherType}
                                 weatherState={weatherState}
                             />

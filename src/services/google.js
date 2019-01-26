@@ -13,7 +13,7 @@ export const getCitiesByCoordinates = (latitude, longitude) => {
     .then((cities)=> {
       if(isNotError(cities)){
         const formatedCities = cities.results[0]['address_components'].filter((addresses) => {
-          return addresses.types.includes('political')
+          return addresses.types.includes('political') && (!addresses.types.includes('neighborhood') && !addresses.types.includes('administrative_area_level_1') && !addresses.types.includes('administrative_area_level_2') && !addresses.types.includes('country'))
         })
         resolve(formatedCities)
       } else {

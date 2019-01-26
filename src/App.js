@@ -9,13 +9,20 @@ import { WEATHER_TYPE_CELSIUS, data, forecastData } from './constants/weather'
 import dotenv from 'dotenv'
 import './App.css'
 
-const cities = [
-    ['Caracas', 'VE'], 
-    ['Buenos Aires', 'AR'], 
-    ['Santiago', 'CL'],
-    ['Brasilia', 'BR'],
-    ['Bogota', 'CO'],
-    ['London', 'UK']
+const predefinedCities = [
+    ['Caracas', ' VE'], 
+    ['Buenos Aires', ' AR'], 
+    ['Santiago', ' CL'],
+    ['Brasilia', ' BR'],
+    ['Bogota', ' CO'],
+    ['London', ' GB'],
+    ['Madrid', ' ES'],
+    ['Paris', ' FR'],
+    ['Berlin', ' GR'],
+    ['Tokio', ' JP'],
+    ['Shangai', ' CN'],
+    ['New York', ' EU'],
+    ['Washintong', ' EU']
 ]
 
 class App extends Component {
@@ -26,9 +33,10 @@ class App extends Component {
       cities: [],
       city: '',
       country: '',
-      location: `${cities[0][0]}, ${cities[0][1]}`,
+      location: ``,
       data: data,
       forecastData: forecastData,
+      predefinedCities: predefinedCities,
       error: false,
       message: ""
     }
@@ -67,10 +75,8 @@ class App extends Component {
       .then(({ city, country, latitude, longitude }) => {
         Google.getCitiesByCoordinates(latitude, longitude)
           .then((cities) => {
-            const country = cities[cities.length - 1]['short_name']
             const formatedCities = cities.map((city, i)=>{
-              return [city['long_name'], country]
-              
+              return [city['long_name'], ` ${country}`]
             })
             this.setState({
               location: `${city}, ${country}`,
@@ -83,7 +89,7 @@ class App extends Component {
   }
 
   render() {
-    const { weatherType, location, data, forecastData, error, cities } = this.state
+    const { weatherType, location, data, forecastData, error, cities, predefinedCities } = this.state
     return (
       <div className="app-container">
         {
@@ -97,6 +103,8 @@ class App extends Component {
                 <WeatherSettings
                   changeWeather={this.changeWeatherType}
                   wType={weatherType}
+                  cities={predefinedCities}
+                  selectedCities={cities}
                 />
                 <WeatherContent
                   city={location}

@@ -229,7 +229,7 @@ export const getDateForSun = (date) => {
 export const getNext5DaysForecastData = (data) => {
   return data.filter((forecast) => {
     const time = new Date(forecast.time)
-    return time.getHours() === 23
+    return time.getHours() === 22;
   })
 }
 
